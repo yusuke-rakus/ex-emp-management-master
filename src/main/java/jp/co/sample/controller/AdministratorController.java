@@ -1,5 +1,7 @@
 package jp.co.sample.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
@@ -22,9 +25,35 @@ import jp.co.sample.service.AdministratorService;
 @Controller
 @RequestMapping("/")
 public class AdministratorController {
-	
+
+	@Autowired
+	private HttpSession session;
+
 	@Autowired
 	private AdministratorService service;
+
+	@ModelAttribute
+	private LoginForm setUpLoginForm() {
+		return new LoginForm();
+	}
+
+	@RequestMapping("")
+	public String toLogin() {
+		return "administrator/login";
+	}
+
+	@RequestMapping("/login")
+	public String login(LoginForm form, Model model) {
+		Administrator administrator = new Administrator();
+		administrator = service.findByMailAddressAndPassword(form.getEmailAddress(), form.getPassword());
+		if(administrator == null) {
+			String text = "メールアドレスまたはパスワードが間違っています";
+			model.addAttribute("errorMessage", text);
+			return toLogin();
+		}
+		session.setAttribute("administratorName", administrator.getName());
+		return "forward:/employee/showList";
+	}
 
 	@ModelAttribute
 	private InsertAdministratorForm setUpInsertAdministratorForm() {
@@ -38,13 +67,13 @@ public class AdministratorController {
 
 	@RequestMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result, Model model) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return toInsert();
 		}
 		Administrator administrator = new Administrator();
 		BeanUtils.copyProperties(form, administrator);
 		administrator.setMailAddress(form.getEmailAddress());
 		service.insert(administrator);
-		return "redirect:/administrator/login";
+		return "redirect:/";
 	}
 }

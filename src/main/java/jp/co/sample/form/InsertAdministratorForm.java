@@ -3,11 +3,13 @@ package jp.co.sample.form;
 import javax.validation.constraints.NotBlank;
 
 public class InsertAdministratorForm {
-	@NotBlank(message="")
+	@NotBlank(message = "")
 	private String name;
-	@NotBlank(message="")
+	
+	@NotBlank(message = "")
 	private String emailAddress;
-	@NotBlank(message="")
+	
+	@NotBlank(message = "")
 	private String password;
 
 	public String getName() {
