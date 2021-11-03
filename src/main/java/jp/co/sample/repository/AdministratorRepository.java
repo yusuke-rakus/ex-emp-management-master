@@ -30,11 +30,12 @@ public class AdministratorRepository {
 	public void insert(Administrator admin) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(admin);
 		if(admin.getId() == null) {
-			String sql = "INSERT INTO administrators VALUES(:name, :emailAddress, :password)";
+			String sql = "INSERT INTO administrators(name, mail_address, password) "
+					+ "VALUES(:name, :mailAddress, :password)";
 			template.update(sql, param);
 		} else {
 			String sql = "UPDATE administrators "
-					+ "SET name=:name, email_address=:emailAddress, password=:password "
+					+ "SET name=:name, mail_address=:mailAddress, password=:password "
 					+ "WHERE id=:id";
 			template.update(sql, param);
 		}
@@ -48,11 +49,11 @@ public class AdministratorRepository {
 	 * @return Administratorインスタンス
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-		String sql = "SELECT id, name, email_address, password "
+		String sql = "SELECT id, name, mail_address, password "
 				+ "FROM administrators "
 				+ "WHERE mail_address = :mailAddress AND password = :password";
 		SqlParameterSource param = new MapSqlParameterSource()
-				.addValue("mail_address", mailAddress).addValue("password", password);
+				.addValue("mailAddress", mailAddress).addValue("password", password);
 		List<Administrator> adminList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
 		if(adminList .size() == 0) {
 			return null;

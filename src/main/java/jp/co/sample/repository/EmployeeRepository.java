@@ -52,17 +52,21 @@ public class EmployeeRepository {
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		if(employee.getId() == null) {
-			String sql = "INSERT INTO employees "
-					+ "VALUES(:name,:image,:gender,:hire_date"
-							+ ",:mail_address,:zip_code,:address"
-							+ ",:telephone,:salary,:characteristics);";
+			String sql = "INSERT INTO employees(name, image, gender"
+					+ ", hire_date, mail_address, zip_code, address"
+					+ ", telephone, salary, characteristics, dependents_count) "
+					+ "VALUES(:name, :image, :gender, :hireDate"
+							+ ", :mailAddress, :zipCode, :address"
+							+ ", :telephone, :salary, :characteristics"
+							+ ", :dependentsCount);";
 			template.update(sql, param);
 		} else {
 			String sql = "UPDATE employees "
 					+ "SET name=:name, image=:image, gender=:gender"
 					+ ", hire_date=:hireDate, mail_address=:mailAddress"
 					+ ", zip_code=:zipCode, address=:address, telephone=:telephone"
-					+ ", salary=:salary, characteristics=:characteristics";
+					+ ", salary=:salary, characteristics=:characteristics, :dependents_count=:dependentsCount "
+					+ "WHERE id=:id;";
 			template.update(sql, param);
 		}
 	}

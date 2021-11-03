@@ -20,6 +20,7 @@ public class Employee {
 	private String telephone;
 	private Integer salary;
 	private String characteristics;
+	private Integer dependentsCount;
 	public Integer getId() {
 		return id;
 	}
@@ -92,7 +93,7 @@ public class Employee {
 	public void setDependentsCount(Integer dependentsCount) {
 		this.dependentsCount = dependentsCount;
 	}
-	private Integer dependentsCount;
+	
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender + ", hireDate="

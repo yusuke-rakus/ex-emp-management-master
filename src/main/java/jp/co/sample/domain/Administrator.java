@@ -8,7 +8,7 @@ public class Administrator {
 
 	private Integer id;
 	private String name;
-	private String emailAddress;
+	private String mailAddress;
 	private String password;
 
 	public Integer getId() {
@@ -27,12 +27,12 @@ public class Administrator {
 		this.name = name;
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public String getMailAddress() {
+		return mailAddress;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
 	}
 
 	public String getPassword() {
@@ -45,7 +45,7 @@ public class Administrator {
 
 	@Override
 	public String toString() {
-		return "Administrator [id=" + id + ", name=" + name + ", emailAddress=" + emailAddress + ", password="
+		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password="
 				+ password + "]";
 	}
 
