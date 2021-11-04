@@ -31,7 +31,7 @@ public class EmployeeRepository {
 	 * @return
 	 */
 	public List<Employee> findAll(){
-		String sql = "SELECT * from employees";
+		String sql = "SELECT * from employees ORDER BY id";
 		return template.query(sql, EMPLOYEE_ROW_MAPPER);
 	}
 	/**
@@ -65,7 +65,7 @@ public class EmployeeRepository {
 					+ "SET name=:name, image=:image, gender=:gender"
 					+ ", hire_date=:hireDate, mail_address=:mailAddress"
 					+ ", zip_code=:zipCode, address=:address, telephone=:telephone"
-					+ ", salary=:salary, characteristics=:characteristics, :dependents_count=:dependentsCount "
+					+ ", salary=:salary, characteristics=:characteristics, dependents_count=:dependentsCount "
 					+ "WHERE id=:id;";
 			template.update(sql, param);
 		}

@@ -33,7 +33,7 @@ public class AdministratorController {
 	private AdministratorService service;
 
 	@ModelAttribute
-	private LoginForm setUpLoginForm() {
+	LoginForm setUpLoginForm() {
 		return new LoginForm();
 	}
 
@@ -74,6 +74,12 @@ public class AdministratorController {
 		BeanUtils.copyProperties(form, administrator);
 		administrator.setMailAddress(form.getEmailAddress());
 		service.insert(administrator);
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
 		return "redirect:/";
 	}
 }

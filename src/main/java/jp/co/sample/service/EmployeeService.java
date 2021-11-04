@@ -19,5 +19,16 @@ public class EmployeeService {
 	public List<Employee> showList() {
 		return repository.findAll();
 	}
+	
+	public Employee showDetail(Integer id) {
+		Employee employee = repository.load(id);
+		return employee;
+	}
+	
+	public void update(Integer id, Integer dependentsCount) {
+		Employee employee = repository.load(id);
+		employee.setDependentsCount(dependentsCount);
+		repository.update(employee);
+	}
 
 }
