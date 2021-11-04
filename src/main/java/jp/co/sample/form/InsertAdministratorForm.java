@@ -7,14 +7,15 @@ import org.hibernate.validator.constraints.Length;
 
 
 public class InsertAdministratorForm {
-	@NotBlank
+	
+	@NotBlank(message="氏名を入力してください")
 	private String name;
 	
-	@Email
+	@Email(message="メールアドレスを正しく入力してください")
+	@NotBlank(message="メールアドレスを正しく入力してください")
 	private String emailAddress;
 	
-	@NotBlank
-	@Length(min=8, max=20)
+	@Length(min=8, max=20, message="8文字以上20文字以内で入力してください")
 	private String password;
 
 	public String getName() {

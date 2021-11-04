@@ -54,7 +54,7 @@
 		<!-- パンくずリスト -->
 		<ol class="breadcrumb">
 			<li class="active"><a href="list.html"
-				th:href="@{/employee/showList}">従業員リスト</a></li>
+				th:href="@{/employee/showList?page=0}">従業員リスト</a></li>
 		</ol>
 
 		<!-- table -->
@@ -82,7 +82,9 @@
 						</tr>
 					</tbody>
 				</table>
-
+				
+				<a th:unless="${page == 0}" th:href="@{/employee/showList?page=} + ${page - 1}">&lt;前へ</a>
+				<a th:href="@{/employee/showList?page=} + ${page + 1}">次へ&gt;</a>
 
 				<!-- ここから下を編集する必要はありません -->
 

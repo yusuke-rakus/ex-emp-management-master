@@ -24,19 +24,16 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService service;
 	
-	@RequestMapping("")
-	public String index() {
-		return "hello";
-	}
-	
+	/** 全従業員情報を取得 */
 	@RequestMapping("/showList")
-	public String showList(Model model) {
-		List<Employee> employeeList = service.showList();
+	public String showList(Integer page, Model model) {
+		List<Employee> employeeList = service.showList(page);
 		model.addAttribute("employeeList", employeeList);
-		System.out.println(employeeList.get(0).getDependentsCount());
+		model.addAttribute("page", page);
 		return "employee/list";
 	}
 	
+	/** 従業員の詳細情報を表示 */
 	@RequestMapping("/showDetail")
 	public String showDetail(String id, Model model) {
 		Employee employee = service.showDetail(Integer.parseInt(id));
@@ -49,5 +46,4 @@ public class EmployeeController {
 		service.update(id, dependentsCount);
 		return "redirect:/employee/showList";
 	}
-	
 }

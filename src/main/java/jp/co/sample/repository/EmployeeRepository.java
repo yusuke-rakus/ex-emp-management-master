@@ -30,8 +30,8 @@ public class EmployeeRepository {
 	 * 全従業員情報を取得する
 	 * @return
 	 */
-	public List<Employee> findAll(){
-		String sql = "SELECT * from employees ORDER BY id";
+	public List<Employee> findAll(Integer page){
+		String sql = "SELECT * from employees ORDER BY id LIMIT 10 OFFSET " + page * 10;
 		return template.query(sql, EMPLOYEE_ROW_MAPPER);
 	}
 	/**

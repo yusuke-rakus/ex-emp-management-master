@@ -50,8 +50,8 @@
 										<label for="name">
 											氏名:
 										</label>
-										<label th:text="${nameError}" class="error-messages">
-											mail
+										<label th:field="*{name}" th:errors="*{name}" class="error-messages">
+											sample
 										</label>
 										<input type="text" th:field="*{name}" class="form-control" placeholder="山田太郎">
 									</div>
@@ -64,7 +64,7 @@
 										<label for="mailAddress">
 											メールアドレス:
 										</label>
-										<label th:text="${mailAddressError}" class="error-messages">
+										<label th:field="*{emailAddress}" th:errors="*{emailAddress}" class="error-messages">
 											sample
 										</label>
 										<input type="text"  th:field="*{emailAddress}" class="form-control" placeholder="yamada@mail.com">
@@ -78,7 +78,7 @@
 										<label for="passwaord">
 											パスワード:
 										</label>
-										<label th:text="${passwordError}" class="error-messages">
+										<label th:field="*{password}" th:errors="*{password}" class="error-messages">
 											sample
 										</label>
 										<input type="password" th:field="*{password}" class="form-control" placeholder="password">

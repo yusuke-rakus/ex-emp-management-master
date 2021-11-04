@@ -36,12 +36,14 @@ public class AdministratorController {
 	LoginForm setUpLoginForm() {
 		return new LoginForm();
 	}
-
+	
+	/** 管理者ログイン画面へのルーティング */
 	@RequestMapping("")
 	public String toLogin() {
 		return "administrator/login";
 	}
 
+	/** ログイン処理（DBのadministratorテーブルからメールアドレスとパスワードの一致を確認） */
 	@RequestMapping("/login")
 	public String login(LoginForm form, Model model) {
 		Administrator administrator = new Administrator();
@@ -52,25 +54,25 @@ public class AdministratorController {
 			return toLogin();
 		}
 		session.setAttribute("administratorName", administrator.getName());
-		return "forward:/employee/showList";
+		return "redirect:/employee/showList?page=0";
 	}
-
+	
+	
 	@ModelAttribute
 	private InsertAdministratorForm setUpInsertAdministratorForm() {
 		return new InsertAdministratorForm();
 	}
-
+	
+	/** 管理者追加画面へのルーティング */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
 		return "administrator/insert";
 	}
 
+	/** 管理者の新規登録処理（入力された値に対してバリデーション処理） */
 	@RequestMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("nameError", "氏名を入力してください");
-			model.addAttribute("mailAddressError", "メールアドレスを正しく入力してください");
-			model.addAttribute("passwordError", "8文字以上20文字以内で入力してください");
 			return toInsert();
 		}
 		Administrator administrator = new Administrator();
@@ -80,6 +82,7 @@ public class AdministratorController {
 		return "redirect:/";
 	}
 	
+	/** ログアウト処理（session情報の削除後、ログイン画面へ遷移） */
 	@RequestMapping("/logout")
 	public String logout() {
 		session.invalidate();
