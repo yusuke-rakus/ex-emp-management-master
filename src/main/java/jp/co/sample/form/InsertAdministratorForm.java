@@ -1,15 +1,20 @@
 package jp.co.sample.form;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
+
 public class InsertAdministratorForm {
-	@NotBlank(message = "")
+	@NotBlank
 	private String name;
 	
-	@NotBlank(message = "")
+	@Email
 	private String emailAddress;
 	
-	@NotBlank(message = "")
+	@NotBlank
+	@Length(min=8, max=20)
 	private String password;
 
 	public String getName() {

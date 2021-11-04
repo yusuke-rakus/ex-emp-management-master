@@ -68,6 +68,9 @@ public class AdministratorController {
 	@RequestMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("nameError", "氏名を入力してください");
+			model.addAttribute("mailAddressError", "メールアドレスを正しく入力してください");
+			model.addAttribute("passwordError", "8文字以上20文字以内で入力してください");
 			return toInsert();
 		}
 		Administrator administrator = new Administrator();
