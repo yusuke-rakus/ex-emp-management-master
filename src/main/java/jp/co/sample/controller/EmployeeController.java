@@ -32,7 +32,7 @@ public class EmployeeController {
 	
 	/** 全従業員情報を取得 */
 	@RequestMapping("/showList")
-	public String showList(Integer page, Model model) {
+	public String showList(Integer page, Integer id, Model model) {
 		List<Employee> employeeList = service.showList(page);
 		model.addAttribute("employeeList", employeeList);
 		model.addAttribute("page", page);
