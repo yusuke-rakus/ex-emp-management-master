@@ -1,14 +1,8 @@
-package jp.co.sample.domain;
+package jp.co.sample.form;
 
 import java.sql.Date;
 
-/**
- * 従業員のドメインクラス
- * 
- * @author yusukematsumoto
- *
- */
-public class Employee {
+public class UpdateAllEmployeeForm {
 
 	private Integer id;
 	private String name;
@@ -19,9 +13,9 @@ public class Employee {
 	private String zipCode;
 	private String address;
 	private String telephone;
-	private Integer salary;
+	private String salary;
 	private String characteristics;
-	private Integer dependentsCount;
+	private String dependentsCount;
 
 	public Integer getId() {
 		return id;
@@ -95,11 +89,11 @@ public class Employee {
 		this.telephone = telephone;
 	}
 
-	public Integer getSalary() {
+	public String getSalary() {
 		return salary;
 	}
 
-	public void setSalary(Integer salary) {
+	public void setSalary(String salary) {
 		this.salary = salary;
 	}
 
@@ -111,20 +105,19 @@ public class Employee {
 		this.characteristics = characteristics;
 	}
 
-	public Integer getDependentsCount() {
+	public String getDependentsCount() {
 		return dependentsCount;
 	}
 
-	public void setDependentsCount(Integer dependentsCount) {
+	public void setDependentsCount(String dependentsCount) {
 		this.dependentsCount = dependentsCount;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender + ", hireDate="
-				+ hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", address=" + address
-				+ ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
+		return "UpdateAllEmployeeForm [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender
+				+ ", hireDate=" + hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", address="
+				+ address + ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
 				+ ", dependentsCount=" + dependentsCount + "]";
 	}
-
 }

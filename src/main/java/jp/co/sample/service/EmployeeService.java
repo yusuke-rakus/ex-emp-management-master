@@ -30,5 +30,9 @@ public class EmployeeService {
 		employee.setDependentsCount(dependentsCount);
 		repository.update(employee);
 	}
+	
+	public void updateAll(Employee employee) {
+		repository.update(employee);
+	}
 
 }

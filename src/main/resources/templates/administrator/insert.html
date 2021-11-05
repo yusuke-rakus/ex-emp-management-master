@@ -17,12 +17,7 @@
 <body>
 	<div class="container">
 		<!-- 上余白 -->
-		<div class="row">
-			<div class="col-lg-offset-0 col-lg-6 col-md-8 col-sm-10 col-xs-12">
-				<img src="../../static/img/header_logo.png"
-					th:src="@{/img/header_logo.png}" />
-			</div>
-		</div>
+		<div th:insert="administrator-header/header::header"></div>
 		<!-- login form -->
 		<div class="row">
 			<div
@@ -36,38 +31,36 @@
           ">
 				<!-- 背景をグレーに、埋め込んだようなコンポーネント -->
 				<div class="well">
-				
-				
-<!-- ここから上を編集する必要はありません -->
 
-					<form method="post" th:action="@{/insert}" th:object="${insertAdministratorForm}">
+
+					<!-- ここから上を編集する必要はありません -->
+
+					<form method="post" th:action="@{/insert}"
+						th:object="${insertAdministratorForm}">
 						<fieldset>
-							<legend>管理者登録<br>(システムにログインできる管理者を登録します)</legend>
+							<legend>
+								管理者登録<br>(システムにログインできる管理者を登録します)
+							</legend>
 							<!-- 氏名 -->
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-										<label for="name">
-											氏名:
-										</label>
-										<label th:field="*{name}" th:errors="*{name}" class="error-messages">
-											sample
-										</label>
-										<input type="text" th:field="*{name}" class="form-control" placeholder="山田太郎">
+										<label for="name"> 氏名: </label> <label th:field="*{name}"
+											th:errors="*{name}" class="error-messages"> sample </label> <input
+											type="text" th:field="*{name}" class="form-control"
+											placeholder="山田太郎">
 									</div>
 								</div>
 							</div>
- 							<!-- メールアドレス -->
+							<!-- メールアドレス -->
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-										<label for="mailAddress">
-											メールアドレス:
-										</label>
-										<label th:field="*{emailAddress}" th:errors="*{emailAddress}" class="error-messages">
-											sample
-										</label>
-										<input type="text"  th:field="*{emailAddress}" class="form-control" placeholder="yamada@mail.com">
+										<label for="mailAddress"> メールアドレス: </label> <label
+											th:field="*{emailAddress}" th:errors="*{emailAddress}"
+											class="error-messages"> sample </label> <input type="text"
+											th:field="*{emailAddress}" class="form-control"
+											placeholder="yamada@mail.com">
 									</div>
 								</div>
 							</div>
@@ -75,13 +68,11 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-										<label for="passwaord">
-											パスワード:
-										</label>
-										<label th:field="*{password}" th:errors="*{password}" class="error-messages">
-											sample
-										</label>
-										<input type="password" th:field="*{password}" class="form-control" placeholder="password">
+										<label for="passwaord"> パスワード: </label> <label
+											th:field="*{password}" th:errors="*{password}"
+											class="error-messages"> sample </label> <input
+											type="password" th:field="*{password}" class="form-control"
+											placeholder="password">
 									</div>
 								</div>
 							</div>
@@ -98,7 +89,7 @@
 
 
 
-<!-- ここから下を編集する必要はありません -->
+					<!-- ここから下を編集する必要はありません -->
 				</div>
 			</div>
 		</div>

@@ -19,30 +19,27 @@
 
 		<div th:insert="employee-header/header:: header"></div>
 
-		<!-- パンくずリスト -->
 		<ol class="breadcrumb">
 			<li><a href="list.html" th:href="@{/employee/showList?page=0}">従業員リスト</a></li>
 			<li class="active">従業員詳細</li>
 		</ol>
 
-		<!-- register form -->
 		<div class="row">
-			<div
-				class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
-				<!-- 背景をグレーに、埋め込んだようなコンポーネント -->
+	 	<div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
 				<div class="well">
 
 
-					<!-- ここから上を編集する必要はありません -->
 
-					<form method="post" th:action="@{/employee/update}"
-						th:object="${updateEmployeeForm}">
+					<form method="post" th:action="@{/employee/updateAll}"
+						th:object="${updateAllEmployeeForm}">
+						<input type="hidden" name="id" th:value="${employee.id}">
 						<fieldset>
 							<legend>従業員情報</legend>
 							<table class="table table-striped">
 								<tr>
 									<th nowrap>従業員名</th>
-									<td><span th:text="${employee.name}">Name</span></td>
+									<td><input type="text" th:field="*{name}"
+										class="form-control" th:placeholder="${employee.name}">
 								</tr>
 								<tr>
 									<th nowrap>写真</th>
@@ -51,49 +48,54 @@
 								</tr>
 								<tr>
 									<th nowrap>性別</th>
-									<td><span th:text="${employee.gender}">gender</span></td>
+									<td><input type="text" th:field="*{gender}"
+										class="form-control" th:placeholder="${employee.gender}"></td>
 								</tr>
 								<tr>
 									<th nowrap>入社日</th>
-									<td><span th:text="${employee.hireDate}">Hire Date</span>
+									<td><input type="date" name="hireDate"
+										class="form-control" th:value="${employee.hireDate}">
 									</td>
 								</tr>
 								<tr>
 									<th nowrap>メールアドレス</th>
-									<td><span th:text="${employee.mailAddress}">mailAddress</span>
+									<td><input type="text" th:field="*{mailAddress}"
+										class="form-control" th:placeholder="${employee.mailAddress}">
 									</td>
 								</tr>
 								<tr>
 									<th nowrap>郵便番号</th>
-									<td><span th:text="${employee.zipCode}">Zip Code</span></td>
+									<td><input type="text" th:field="*{zipCode}"
+										class="form-control" th:placeholder="${employee.zipCode}"></td>
 								</tr>
 								<tr>
 									<th nowrap>住所</th>
-									<td><span th:text="${employee.address}">Address</span></td>
+									<td><input type="text" th:field="*{address}"
+										class="form-control" th:placeholder="${employee.address}"></td>
 								</tr>
 								<tr>
 									<th nowrap>電話番号</th>
-									<td><span th:text="${employee.telephone}">telephone</span>
+									<td><input type="text" th:field="*{telephone}"
+										class="form-control" th:placeholder="${employee.telephone}">
 									</td>
 								</tr>
 								<tr>
 									<th nowrap>給料</th>
-									<td><span th:text="${employee.salary}">Salary</span></td>
+									<td><input type="text" th:field="*{salary}"
+										class="form-control" th:placeholder="${employee.salary}"></td>
 								</tr>
 								<tr>
 									<th nowrap>特性</th>
-									<td><span th:text="${employee.characteristics}">characteristics</span>
+									<td><textarea name="characteristics"
+											th:text="${employee.characteristics}"
+											style="margin: 0px; height: 74px; width: 559px;"></textarea>
 									</td>
 								</tr>
 								<tr>
 									<th nowrap>扶養人数</th>
-									<td><label class="error-messages"> 扶養人数を入力してください </label>
-										<label class="control-label" style="color: red"
-										for="dependentsCount"></label> <input type="hidden" name="id"
-										th:value="${employee.id}"> <input type="text"
-										name="dependentsCount" id="dependentsCount"
-										class="form-control" th:value="${employee.dependentsCount}">
-									</td>
+									<td><input type="text" th:field="*{dependentsCount}"
+										class="form-control"
+										th:placeholder="${employee.dependentsCount}"></td>
 								</tr>
 							</table>
 							<button type="submit" class="btn btn-primary">更新</button>
@@ -101,12 +103,10 @@
 					</form>
 
 
-					<!-- ここから下を編集する必要はありません -->
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="../../static/js/bootstrap.min.js"

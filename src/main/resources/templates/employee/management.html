@@ -19,19 +19,15 @@
 
 		<div th:insert="employee-header/header:: header"></div>
 
-		<!-- パンくずリスト -->
 		<ol class="breadcrumb">
 			<li class="active"><a href="list.html"
 				th:href="@{/employee/showList?page=0}">従業員リスト</a></li>
+			<li class="active">従業員管理</li>
 		</ol>
 
-		<!-- table -->
 		<div class="row">
 			<div
 				class="table-responsive col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
-
-				<!-- ここから上を編集する必要はありません -->
-
 
 				<table class="table table-striped">
 					<thead>
@@ -43,7 +39,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="employee:${employeeList}">
-							<td><a th:href="@{/employee/showDetail(id=${employee.id})}">
+							<td><a th:href="@{/employee/toContent(id=${employee.id})}">
 									<span th:text="${employee.name}">Name</span>
 							</a></td>
 							<td><span th:text="${employee.hireDate}">Hire Date</span></td>
@@ -52,17 +48,14 @@
 						</tr>
 					</tbody>
 				</table>
-
 				<a th:unless="${page == 0}"
-					th:href="@{/employee/showList?page=} + ${page - 1}">&lt;前へ</a> <a
-					th:href="@{/employee/showList?page=} + ${page + 1}">次へ&gt;</a>
-
-				<!-- ここから下を編集する必要はありません -->
+					th:href="@{/employee/management?page=} + ${page - 1}">&lt;前へ</a> <a
+					th:href="@{/employee/management?page=} + ${page + 1}">次へ&gt;</a>
 
 			</div>
 		</div>
 	</div>
-	<!-- end container -->
+
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
